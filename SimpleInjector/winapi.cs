@@ -5,6 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
+/*
+ https://www.pinvoke.net/index.aspx
+*/
+
 namespace SimpleInjector
 {
     static public class WinAPI
