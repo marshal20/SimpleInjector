@@ -61,6 +61,13 @@ namespace SimpleInjector
         [Out] StringBuilder lpImageFileName,
         [In] [MarshalAs(UnmanagedType.U4)] int nSize);
 
+        [DllImport("psapi.dll")]
+        public static extern uint GetModuleBaseName(IntPtr hProcess, IntPtr hModule, StringBuilder lpBaseName, uint nSize);
+
+        [DllImport("psapi.dll", SetLastError = true)]
+        public static extern bool EnumProcessModules(IntPtr hProcess,
+        [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U4)] [In][Out] uint[] lphModule, uint cb, [MarshalAs(UnmanagedType.U4)] out uint lpcbNeeded);
+
         [Flags]
         public enum ProcessAccessFlags : uint
         {

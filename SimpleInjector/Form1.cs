@@ -13,6 +13,8 @@ namespace SimpleInjector
 {
     public partial class Form1 : Form
     {
+        uint SelectedProcId = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -20,14 +22,22 @@ namespace SimpleInjector
 
         private void button1_Click(object sender, EventArgs e)
         {
-            uint SelProc = uint.Parse(label1.Text, System.Globalization.NumberStyles.HexNumber);
+            uint SelProc = uint.Parse(ProcId.Text, System.Globalization.NumberStyles.HexNumber);
 
             SelProcDialog procdialog = new SelProcDialog();
             procdialog.SelectedProcess = SelProc;
             procdialog.ShowDialog();
-            SelProc = procdialog.SelectedProcess;
+            SelectedProcId = procdialog.SelectedProcess;
 
-            label1.Text = SelProc.ToString("X4");
+            UpdatePreview();
+        }
+
+        private void UpdatePreview()
+        {
+            ProcListBackend.ProcInfo SelectedProcInfo = ProcListBackend.GetProcInfo(SelectedProcId);
+            ProcName.Text = SelectedProcInfo.name;
+            ProcId.Text = SelectedProcInfo.id.ToString("X4");
+            ProcPicture.Image = SelectedProcInfo.preview;
         }
     }
 }

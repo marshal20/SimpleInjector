@@ -50,7 +50,7 @@ namespace SimpleInjector
             ProcList.Items.Clear();
             var imageList = new ImageList();
 
-            List<ProcListBackend.ProcInfo> ProcInfoList = ProcListBackend.GetList();
+            List<ProcListBackend.ProcInfo> ProcInfoList = ProcListBackend.GetProcList();
             foreach (ProcListBackend.ProcInfo pInfo in ProcInfoList)
             {
                 ListViewItem NewItem = new ListViewItem("");
