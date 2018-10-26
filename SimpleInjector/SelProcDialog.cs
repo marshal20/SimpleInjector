@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
 
 namespace SimpleInjector
 {
@@ -65,6 +64,9 @@ namespace SimpleInjector
                 }
                 ProcList.Items.Add(NewItem);
             }
+
+            ProcList.LargeImageList = imageList;
+            ProcList.SmallImageList = imageList;
         }
 
     }

@@ -20,19 +20,14 @@ namespace SimpleInjector
 
         private void button1_Click(object sender, EventArgs e)
         {
-            uint SelProc = 0;
-            try
-            {
-                SelProc = uint.Parse(label1.Text, System.Globalization.NumberStyles.HexNumber);
-            }
-            catch
-            {
-                SelProc = 0;
-            }
-            SelProcDialog procdialog = new SelProcDialog
-            { SelectedProcess = SelProc };
+            uint SelProc = uint.Parse(label1.Text, System.Globalization.NumberStyles.HexNumber);
+
+            SelProcDialog procdialog = new SelProcDialog();
+            procdialog.SelectedProcess = SelProc;
             procdialog.ShowDialog();
-            label1.Text = procdialog.SelectedProcess.ToString("X4");
+            SelProc = procdialog.SelectedProcess;
+
+            label1.Text = SelProc.ToString("X4");
         }
     }
 }
