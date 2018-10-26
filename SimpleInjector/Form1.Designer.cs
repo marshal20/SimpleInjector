@@ -32,6 +32,8 @@
             this.ProcId = new System.Windows.Forms.Label();
             this.ProcPicture = new System.Windows.Forms.PictureBox();
             this.ProcName = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.DllPath = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ProcPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,11 +77,32 @@
             this.ProcName.TabIndex = 6;
             this.ProcName.Text = "...";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(12, 147);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(373, 55);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Inject";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // DllPath
+            // 
+            this.DllPath.AutoSize = true;
+            this.DllPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DllPath.Location = new System.Drawing.Point(13, 83);
+            this.DllPath.Name = "DllPath";
+            this.DllPath.Size = new System.Drawing.Size(30, 25);
+            this.DllPath.TabIndex = 8;
+            this.DllPath.Text = "...";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(397, 283);
+            this.Controls.Add(this.DllPath);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.ProcName);
             this.Controls.Add(this.ProcPicture);
             this.Controls.Add(this.ProcId);
@@ -98,6 +121,8 @@
         private System.Windows.Forms.Label ProcId;
         private System.Windows.Forms.PictureBox ProcPicture;
         private System.Windows.Forms.Label ProcName;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label DllPath;
     }
 }
 

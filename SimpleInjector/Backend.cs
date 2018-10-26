@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 
 namespace SimpleInjector
 {
-    class ProcListBackend
+    class Backend
     {
         public struct ProcInfo
         {
@@ -20,10 +20,18 @@ namespace SimpleInjector
 
         public static ProcInfo GetProcInfo(uint procId)
         {
-            ProcInfo procInfo = new ProcInfo();
+            return GetProcInfo((entry) => { return entry.th32ProcessID == procId; });
+        }
 
-            if (procId == 0)
-                return procInfo;
+        public static ProcInfo GetProcInfo(string procName)
+        {
+            return GetProcInfo((entry) => { return entry.szExeFile == procName; });
+        }
+
+        private delegate bool ProcMatchCallBack(WinAPI.PROCESSENTRY32 taskResult);
+        private static ProcInfo GetProcInfo(ProcMatchCallBack callback)
+        {
+            ProcInfo procInfo = new ProcInfo();
 
             IntPtr snap_shot = new IntPtr();
             WinAPI.PROCESSENTRY32 proc_entry = new WinAPI.PROCESSENTRY32();
@@ -34,7 +42,7 @@ namespace SimpleInjector
             {
                 while (WinAPI.Process32Next(snap_shot, ref proc_entry) == true)
                 {
-                    if(proc_entry.th32ProcessID == procId)
+                    if (callback(proc_entry))
                     {
                         procInfo.name = proc_entry.szExeFile;
                         procInfo.id = proc_entry.th32ProcessID;

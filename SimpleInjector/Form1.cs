@@ -22,10 +22,8 @@ namespace SimpleInjector
 
         private void button1_Click(object sender, EventArgs e)
         {
-            uint SelProc = uint.Parse(ProcId.Text, System.Globalization.NumberStyles.HexNumber);
-
             SelProcDialog procdialog = new SelProcDialog();
-            procdialog.SelectedProcess = SelProc;
+            procdialog.SelectedProcess = SelectedProcId;
             procdialog.ShowDialog();
             SelectedProcId = procdialog.SelectedProcess;
 
@@ -34,7 +32,7 @@ namespace SimpleInjector
 
         private void UpdatePreview()
         {
-            ProcListBackend.ProcInfo SelectedProcInfo = ProcListBackend.GetProcInfo(SelectedProcId);
+            Backend.ProcInfo SelectedProcInfo = Backend.GetProcInfo(SelectedProcId);
             ProcName.Text = SelectedProcInfo.name;
             ProcId.Text = SelectedProcInfo.id.ToString("X4");
             ProcPicture.Image = SelectedProcInfo.preview;
