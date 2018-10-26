@@ -123,5 +123,10 @@ namespace SimpleInjector
                 return null;
             }
         }
+
+        public static void InjectDll(uint ProcId, string DllPath)
+        {
+
+        }
     }
 }
