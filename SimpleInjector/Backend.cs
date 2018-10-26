@@ -124,9 +124,58 @@ namespace SimpleInjector
             }
         }
 
-        public static void InjectDll(uint ProcId, string DllPath)
+        public static bool InjectDll(uint ProcId, string DllPath)
         {
+            IntPtr LoadLibAddr;
+            IntPtr TargetProc;
+            List<byte> path = Encoding.ASCII.GetBytes(DllPath).ToList();
+            path.Add(0);
+            IntPtr AllocatedMemory;
+            uint AllocatedSize;
 
+            LoadLibAddr = WinAPI.GetProcAddress(WinAPI.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
+            TargetProc = WinAPI.OpenProcess(WinAPI.ProcessAccessFlags.All, false, (int)ProcId);
+            if(TargetProc == (IntPtr)0)
+            {
+                return false;
+            }
+
+            AllocatedSize = (uint)(path.Count + 1);
+            AllocatedMemory = WinAPI.VirtualAllocEx(TargetProc, (IntPtr)0,
+                AllocatedSize, 
+                WinAPI.AllocationType.Commit, WinAPI.MemoryProtection.ReadWrite);
+            if (TargetProc == (IntPtr)0)
+            {
+                WinAPI.CloseHandle(TargetProc);
+                return false;
+            }
+
+            IntPtr written;
+            bool write_res = WinAPI.WriteProcessMemory(TargetProc, AllocatedMemory,
+                path.ToArray(), path.Count, out written);
+            if(!write_res)
+            {
+                WinAPI.VirtualFreeEx(TargetProc, AllocatedMemory, (int)AllocatedSize, WinAPI.FreeType.Release);
+                WinAPI.CloseHandle(TargetProc);
+                return false;
+            }
+
+            IntPtr thread_id;
+            IntPtr RemoteThread = WinAPI.CreateRemoteThread(TargetProc, (IntPtr)0, (uint)0,
+                LoadLibAddr, AllocatedMemory, (uint)0, out thread_id);
+            if(RemoteThread == (IntPtr)0)
+            {
+                WinAPI.VirtualFreeEx(TargetProc, AllocatedMemory, (int)AllocatedSize, WinAPI.FreeType.Release);
+                WinAPI.CloseHandle(TargetProc);
+                return false;
+            }
+
+            // Cleanup.
+            WinAPI.WaitForSingleObject(RemoteThread, 0xFFFFFFFF);
+            WinAPI.CloseHandle(RemoteThread);
+            WinAPI.VirtualFreeEx(TargetProc, AllocatedMemory, (int)AllocatedSize, WinAPI.FreeType.Release);
+            WinAPI.CloseHandle(TargetProc);
+            return true;
         }
     }
 }

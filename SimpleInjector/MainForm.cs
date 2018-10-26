@@ -63,7 +63,11 @@ namespace SimpleInjector
                 return;
             }
 
-            Backend.InjectDll(SelectedProcId, DllPath.Text);
+            bool InjectionResult = Backend.InjectDll(SelectedProcId, DllPath.Text);
+            if(!InjectionResult)
+            {
+                MessageBox.Show("Can't inject into the process.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
