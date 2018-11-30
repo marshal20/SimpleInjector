@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 
 namespace InjectorAPI
 {
-    class Inject
+    static public class Backend
     {
         public struct ProcInfo
         {

@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 
 namespace InjectorAPI
 {
-    static public class WinAPI
+    static class WinAPI
     {
         [Flags]
         public enum SnapshotFlags : uint
