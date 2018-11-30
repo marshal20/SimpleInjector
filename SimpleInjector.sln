@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInjector", "SimpleInj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InjectorAPI", "InjectorAPI\InjectorAPI.csproj", "{94633A12-1B1D-4110-8BBD-63491A1C7806}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInjectorCmd", "SimpleInjectorCmd\SimpleInjectorCmd.csproj", "{44572951-3804-452C-B677-990D1356645E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,18 @@ Global
 		{94633A12-1B1D-4110-8BBD-63491A1C7806}.Release|x64.Build.0 = Release|Any CPU
 		{94633A12-1B1D-4110-8BBD-63491A1C7806}.Release|x86.ActiveCfg = Release|Any CPU
 		{94633A12-1B1D-4110-8BBD-63491A1C7806}.Release|x86.Build.0 = Release|Any CPU
+		{44572951-3804-452C-B677-990D1356645E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44572951-3804-452C-B677-990D1356645E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44572951-3804-452C-B677-990D1356645E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{44572951-3804-452C-B677-990D1356645E}.Debug|x64.Build.0 = Debug|Any CPU
+		{44572951-3804-452C-B677-990D1356645E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{44572951-3804-452C-B677-990D1356645E}.Debug|x86.Build.0 = Debug|Any CPU
+		{44572951-3804-452C-B677-990D1356645E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44572951-3804-452C-B677-990D1356645E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44572951-3804-452C-B677-990D1356645E}.Release|x64.ActiveCfg = Release|Any CPU
+		{44572951-3804-452C-B677-990D1356645E}.Release|x64.Build.0 = Release|Any CPU
+		{44572951-3804-452C-B677-990D1356645E}.Release|x86.ActiveCfg = Release|Any CPU
+		{44572951-3804-452C-B677-990D1356645E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
