@@ -22,6 +22,8 @@ namespace SimpleInjector
         private void SelProcDialog_Load(object sender, EventArgs e)
         {
             UpdateList();
+            ProcList.Items[ProcList.Items.Count - 1].EnsureVisible();
+
             foreach (ListViewItem item in ProcList.Items)
             {
                 uint procId = uint.Parse(item.SubItems[2].Text, System.Globalization.NumberStyles.HexNumber);
@@ -29,6 +31,7 @@ namespace SimpleInjector
                 {
                     item.Selected = true;
                     item.Focused = true;
+                    item.EnsureVisible();
                     ProcList.Select();
                 }
             }
