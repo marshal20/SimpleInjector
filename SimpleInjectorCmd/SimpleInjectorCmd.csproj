@@ -48,5 +48,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InjectorAPI\InjectorAPI.csproj">
+      <Project>{94633a12-1b1d-4110-8bbd-63491a1c7806}</Project>
+      <Name>InjectorAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
